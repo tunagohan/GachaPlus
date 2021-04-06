@@ -1,0 +1,15 @@
+query-timeout: 10
+cache-expire-seconds: 3600
+ticket-display-name: "&f&l名無し鯖ガチャガチャ券"
+ticket-lore1: "ガチャ券です。"
+ticket-lore2: "通常ガチャには使用できません。"
+sign-line1-prefix: "&6&l"
+sign-line2-prefix: ""
+sign-line3: "&8右クリック！"
+hold-the-ticket: "チケットを右手に持ってください。"
+not-found-ticket-code: "チケットコードは使用済みか未登録です。"
+not-found-chest1: "ガチャガチャのチェストが見つかりません。"
+not-found-chest2: "/gachaplus modify <gacha_name>でチェストをセットしてください。"
+not-found-pick: "ハズレました。"
+found-pick: "賞品をインベントリに送りました。"
+not-found-money: "お金が足りません"
