@@ -49,7 +49,7 @@ sample_gacha
 
 Enter the following command and right-click on the "Chest" you want to enable.
 
-`/gachaplus modify sample_gacha`
+`/gachaplus modify <gacha name>`
 
 done.
 
@@ -101,6 +101,6 @@ sample_gacha
 
 次のコマンドを入力し、有効にする「チェスト」を右クリックします。
 
-`/gachaplus modify sample_gacha`
+`/gachaplus modify <gacha name>`
 
 以上
