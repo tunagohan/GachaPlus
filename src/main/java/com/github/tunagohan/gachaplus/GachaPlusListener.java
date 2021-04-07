@@ -137,6 +137,12 @@ public class GachaPlusListener implements Listener{
       String gachaName = sign.getLine(1);
       Integer gachaPrice = gacha.getDatabase().getGachaPrice(gachaName);
 
+      ItemStack item = p.getInventory().getItemInMainHand();
+      if(item.getType().equals(Material.AIR)) {
+        GachaPlusUtility.sendMessage(p, ChatColor.translateAlternateColorCodes('&', "手に何も持ってない状態でクリックをしてください"));
+        return;
+      }
+
       if(gachaPrice == null) {
         GachaPlusUtility.sendMessage(p, ChatColor.translateAlternateColorCodes('&', "gachaPriceがnullっぽい"));
         GachaPlusUtility.sendMessage(p, ChatColor.translateAlternateColorCodes('&', gachaName));
