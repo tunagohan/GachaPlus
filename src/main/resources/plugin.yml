@@ -2,18 +2,18 @@ name: GachaPlus
 version: ${project.version}
 main: com.github.tunagohan.gachaplus.GachaPlus
 api-version: 1.16
-authors: [ tunagohan ]
-description: gacha
+authors: [tunagohan]
+description: "gacha"
 depend: [Vault]
 
 commands:
   gachaplus:
-    description: Commands to manage your gacha
+    description: "Commands to manage your gacha"
     usage: |
-        Use /help gachaplus [subcommand] for more information
-        /<command> list - List all gacha
-        /<command> modify <gacha_name> - Modify a gacha
-        /<command> delete <gacha_name> - Delete a gacha
+      Use /help gachaplus [subcommand] for more information
+      /<command> list - List all gacha
+      /<command> modify <gacha_name> - Modify a gacha
+      /<command> delete <gacha_name> - Delete a gacha
     gachaplus list:
       description: List all gacha
       usage: /<command> list

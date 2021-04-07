@@ -99,7 +99,7 @@ public class GachaPlusUtility {
   public static String scanf(String format, String str) {
     return StringUtils.difference(format, str);
   }
-  
+
   public static ArrayList<Player> getTarget(Plugin gacha, String selector) {
     return getTarget(gacha, selector, null);
   }
@@ -159,8 +159,8 @@ public class GachaPlusUtility {
     for(Player p : l.getWorld().getPlayers()) {
       double distance = p.getLocation().distance(l);
       if(distance < lastDistance) {
-          lastDistance = distance;
-          latestPlayer = p;
+        lastDistance = distance;
+        latestPlayer = p;
       }
     }
     return latestPlayer;

@@ -150,20 +150,20 @@ public class GachaPlusDatabase {
       stmt = getStmt();
 
       stmt.executeUpdate("CREATE TABLE IF NOT EXISTS gacha ("
-        + "  id INTEGER PRIMARY KEY AUTOINCREMENT"
-        + "  ,gacha_name STRING NOT NULL"
-        + "  ,gacha_display_name STRING NOT NULL"
-        + "  ,gacha_price INTEGER NOT NULL"
-        + "  ,world_name STRING NOT NULL"
-        + "  ,sign_x INTEGER NOT NULL"
-        + "  ,sign_y INTEGER NOT NULL"
-        + "  ,sign_z INTEGER NOT NULL"
-        + "  ,chest_x INTEGER NOT NULL DEFAULT 0"
-        + "  ,chest_y INTEGER NOT NULL DEFAULT 0"
-        + "  ,chest_z INTEGER NOT NULL DEFAULT 0"
-        + "  ,updated_at DATETIME NOT NULL DEFAULT (datetime('now','localtime')) CHECK(updated_at LIKE '____-__-__ __:__:__')"
-        + "  ,created_at DATETIME NOT NULL DEFAULT (datetime('now','localtime')) CHECK(created_at LIKE '____-__-__ __:__:__')"
-        + ");"
+              + "  id INTEGER PRIMARY KEY AUTOINCREMENT"
+              + "  ,gacha_name STRING NOT NULL"
+              + "  ,gacha_display_name STRING NOT NULL"
+              + "  ,gacha_price INTEGER NOT NULL"
+              + "  ,world_name STRING NOT NULL"
+              + "  ,sign_x INTEGER NOT NULL"
+              + "  ,sign_y INTEGER NOT NULL"
+              + "  ,sign_z INTEGER NOT NULL"
+              + "  ,chest_x INTEGER NOT NULL DEFAULT 0"
+              + "  ,chest_y INTEGER NOT NULL DEFAULT 0"
+              + "  ,chest_z INTEGER NOT NULL DEFAULT 0"
+              + "  ,updated_at DATETIME NOT NULL DEFAULT (datetime('now','localtime')) CHECK(updated_at LIKE '____-__-__ __:__:__')"
+              + "  ,created_at DATETIME NOT NULL DEFAULT (datetime('now','localtime')) CHECK(created_at LIKE '____-__-__ __:__:__')"
+              + ");"
       );
       stmt.executeUpdate("CREATE UNIQUE INDEX IF NOT EXISTS gacha_name_uindex ON gacha (gacha_name);");
       stmt.executeUpdate("CREATE UNIQUE INDEX IF NOT EXISTS world_name_sign_xyz_uindex ON gacha (world_name, sign_x, sign_y, sign_z);");
@@ -191,33 +191,33 @@ public class GachaPlusDatabase {
     List<String> ret = new ArrayList<String>();
     try {
       prepStmt = getCon().prepareStatement("SELECT"
-        + "  gacha_name "
-        + "  ,world_name "
-        + "  ,sign_x "
-        + "  ,sign_y "
-        + "  ,sign_z "
-        + "  ,chest_x "
-        + "  ,chest_y "
-        + "  ,chest_z "
-        + "FROM"
-        + "  gacha "
-        + "ORDER BY"
-        + "  id DESC"
-        );
+              + "  gacha_name "
+              + "  ,world_name "
+              + "  ,sign_x "
+              + "  ,sign_y "
+              + "  ,sign_z "
+              + "  ,chest_x "
+              + "  ,chest_y "
+              + "  ,chest_z "
+              + "FROM"
+              + "  gacha "
+              + "ORDER BY"
+              + "  id DESC"
+      );
       rs = prepStmt.executeQuery();
       while(rs.next()){
         ret.add(
-          String.format(
-            "gacha_name:%s world:%s sign[x,y,z]:%d,%d,%d chest[x,y,z]:%d,%d,%d"
-            ,rs.getString(1)
-            ,rs.getString(2)
-            ,rs.getInt(3)
-            ,rs.getInt(4)
-            ,rs.getInt(5)
-            ,rs.getInt(6)
-            ,rs.getInt(7)
-            ,rs.getInt(8)
-          )
+                String.format(
+                        "gacha_name:%s world:%s sign[x,y,z]:%d,%d,%d chest[x,y,z]:%d,%d,%d"
+                        ,rs.getString(1)
+                        ,rs.getString(2)
+                        ,rs.getInt(3)
+                        ,rs.getInt(4)
+                        ,rs.getInt(5)
+                        ,rs.getInt(6)
+                        ,rs.getInt(7)
+                        ,rs.getInt(8)
+                )
         );
       }
       closeRs(rs);
@@ -361,11 +361,11 @@ public class GachaPlusDatabase {
         refreshCache();
       }
       String searchIndex = String.join(
-        "_"
-        ,loc.getWorld().getName()
-        ,String.valueOf(loc.getBlockX())
-        ,String.valueOf(loc.getBlockY())
-        ,String.valueOf(loc.getBlockZ())
+              "_"
+              ,loc.getWorld().getName()
+              ,String.valueOf(loc.getBlockX())
+              ,String.valueOf(loc.getBlockY())
+              ,String.valueOf(loc.getBlockZ())
       );
       if(listGachaSignCache.contains(searchIndex)) {
         // no database & cache hit.
@@ -390,11 +390,11 @@ public class GachaPlusDatabase {
       listGachaSignCache.clear();
       while(rs.next()){
         cacheIndex = String.join(
-          "_"
-          ,rs.getString(1)
-          ,String.valueOf(rs.getInt(2))
-          ,String.valueOf(rs.getInt(3))
-          ,String.valueOf(rs.getInt(4))
+                "_"
+                ,rs.getString(1)
+                ,String.valueOf(rs.getInt(2))
+                ,String.valueOf(rs.getInt(3))
+                ,String.valueOf(rs.getInt(4))
         );
         listGachaSignCache.add(cacheIndex);
       }
@@ -430,14 +430,14 @@ public class GachaPlusDatabase {
       }
 
       prepStmt = getCon().prepareStatement("INSERT INTO gacha("
-        + "  gacha_name"
-        + ", gacha_display_name"
-        + ", gacha_price"
-        + ", world_name"
-        + ", sign_x"
-        + ", sign_y"
-        + ", sign_z"
-        + ") VALUES (?,?,?,?,?,?,?)");
+              + "  gacha_name"
+              + ", gacha_display_name"
+              + ", gacha_price"
+              + ", world_name"
+              + ", sign_x"
+              + ", sign_y"
+              + ", sign_z"
+              + ") VALUES (?,?,?,?,?,?,?)");
       prepStmt.setString(1, gachaName);
       prepStmt.setString(2, gachaDisplayName);
       prepStmt.setInt(3, gachaPrice);
