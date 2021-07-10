@@ -1,7 +1,7 @@
 name: GachaPlus
 version: ${project.version}
 main: com.github.tunagohan.gachaplus.GachaPlus
-api-version: 1.16
+api-version: 1.17
 authors: [tunagohan]
 description: "gacha"
 depend: [Vault]

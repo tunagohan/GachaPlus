@@ -16,11 +16,10 @@ public class GachaPlusCommand {
   private CommandSender sender;
   private String[] args;
   protected static final String META_CHEST = "gachaplus.chest";
-  protected static final String GACHA_PROJECT_NAME = "nanasi";
 
   /**
    * Constructor of GachaCommand.
-   * @param GachaPlus gacha
+   * @param gacha GachaPlus gacha
    */
   public GachaPlusCommand(GachaPlus gacha) {
     try{
@@ -32,8 +31,8 @@ public class GachaPlusCommand {
 
   /**
    * Initialize
-   * @param CommandSender CommandSender
-   * @param String[] Argument
+   * @param sender CommandSender CommandSender
+   * @param args String[] Argument
    */
   public void initialize(CommandSender sender, String[] args){
     try{
