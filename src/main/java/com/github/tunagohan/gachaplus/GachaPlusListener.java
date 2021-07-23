@@ -54,7 +54,7 @@ public class GachaPlusListener implements Listener{
     try {
       Economy economy = GachaPlus.getEconomy();
 
-      if(!event.getLine(0).toLowerCase().equals("[gacha]")) {
+      if(!event.getLine(0).toLowerCase().equals("[gachaplus]")) {
         return;
       }
 

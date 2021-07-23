@@ -149,7 +149,7 @@ public class GachaPlusDatabase {
     try{
       stmt = getStmt();
 
-      stmt.executeUpdate("CREATE TABLE IF NOT EXISTS gacha ("
+      stmt.executeUpdate("CREATE TABLE IF NOT EXISTS gachaplus ("
               + "  id INTEGER PRIMARY KEY AUTOINCREMENT"
               + "  ,gacha_name STRING NOT NULL"
               + "  ,gacha_display_name STRING NOT NULL"
@@ -165,9 +165,9 @@ public class GachaPlusDatabase {
               + "  ,created_at DATETIME NOT NULL DEFAULT (datetime('now','localtime')) CHECK(created_at LIKE '____-__-__ __:__:__')"
               + ");"
       );
-      stmt.executeUpdate("CREATE UNIQUE INDEX IF NOT EXISTS gacha_name_uindex ON gacha (gacha_name);");
-      stmt.executeUpdate("CREATE UNIQUE INDEX IF NOT EXISTS world_name_sign_xyz_uindex ON gacha (world_name, sign_x, sign_y, sign_z);");
-      stmt.executeUpdate("CREATE UNIQUE INDEX IF NOT EXISTS world_name_chest_xyz_uindex ON gacha (world_name, chest_x, chest_y, chest_z);");
+      stmt.executeUpdate("CREATE UNIQUE INDEX IF NOT EXISTS gacha_name_uindex ON gachaplus (gacha_name);");
+      stmt.executeUpdate("CREATE UNIQUE INDEX IF NOT EXISTS world_name_sign_xyz_uindex ON gachaplus (world_name, sign_x, sign_y, sign_z);");
+      stmt.executeUpdate("CREATE UNIQUE INDEX IF NOT EXISTS world_name_chest_xyz_uindex ON gachaplus (world_name, chest_x, chest_y, chest_z);");
 
       closeStmt(stmt);
 
@@ -239,7 +239,7 @@ public class GachaPlusDatabase {
   public boolean deleteGacha(String gachaName) {
     PreparedStatement prepStmt = null;
     try {
-      prepStmt = getCon().prepareStatement("DELETE FROM gacha WHERE gacha_name = ?;");
+      prepStmt = getCon().prepareStatement("DELETE FROM gachaplus WHERE gacha_name = ?;");
       prepStmt.setString(1, gachaName);
       prepStmt.addBatch();
       prepStmt.executeBatch();
@@ -263,7 +263,7 @@ public class GachaPlusDatabase {
     ResultSet rs = null;
     Integer gachaId = null;
     try {
-      prepStmt = getCon().prepareStatement("SELECT id FROM gacha WHERE gacha_name=?");
+      prepStmt = getCon().prepareStatement("SELECT id FROM gachaplus WHERE gacha_name=?");
       prepStmt.setString(1, gachaName);
       rs = prepStmt.executeQuery();
       while(rs.next()){
@@ -286,7 +286,7 @@ public class GachaPlusDatabase {
     PreparedStatement prepStmt = null;
     ResultSet rs = null;
     try {
-      prepStmt = getCon().prepareStatement("SELECT world_name, chest_x, chest_y, chest_z FROM gacha WHERE world_name=? AND sign_x=? AND sign_y=? AND sign_z=?");
+      prepStmt = getCon().prepareStatement("SELECT world_name, chest_x, chest_y, chest_z FROM gachaplus WHERE world_name=? AND sign_x=? AND sign_y=? AND sign_z=?");
       prepStmt.setString(1, signLoc.getWorld().getName());
       prepStmt.setInt(2, signLoc.getBlockX());
       prepStmt.setInt(3, signLoc.getBlockY());
@@ -384,7 +384,7 @@ public class GachaPlusDatabase {
    */
   public boolean refreshCache(){
     try {
-      PreparedStatement prepStmt = getCon().prepareStatement("SELECT world_name, sign_x, sign_y, sign_z FROM gacha");
+      PreparedStatement prepStmt = getCon().prepareStatement("SELECT world_name, sign_x, sign_y, sign_z FROM gachaplus");
       ResultSet rs = prepStmt.executeQuery();
       String cacheIndex;
       listGachaSignCache.clear();
@@ -429,7 +429,7 @@ public class GachaPlusDatabase {
         return gachaId;
       }
 
-      prepStmt = getCon().prepareStatement("INSERT INTO gacha("
+      prepStmt = getCon().prepareStatement("INSERT INTO gachaplus("
               + "  gacha_name"
               + ", gacha_display_name"
               + ", gacha_price"
@@ -481,7 +481,7 @@ public class GachaPlusDatabase {
         return false;
       }
 
-      prepStmt = getCon().prepareStatement("UPDATE gacha SET chest_x = ?, chest_y = ?, chest_z = ? WHERE gacha_name = ?;");
+      prepStmt = getCon().prepareStatement("UPDATE gachaplus SET chest_x = ?, chest_y = ?, chest_z = ? WHERE gacha_name = ?;");
       prepStmt.setInt(1, chestX);
       prepStmt.setInt(2, chestY);
       prepStmt.setInt(3, chestZ);
@@ -504,7 +504,7 @@ public class GachaPlusDatabase {
     ResultSet rs = null;
     Integer gachaPrice = null;
     try {
-      prepStmt = getCon().prepareStatement("SELECT gacha_price FROM gacha WHERE gacha_name = ?;");
+      prepStmt = getCon().prepareStatement("SELECT gacha_price FROM gachaplus WHERE gacha_name = ?;");
       prepStmt.setString(1, gachaName);
       rs = prepStmt.executeQuery();
       while(rs.next()){
